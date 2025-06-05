@@ -1,0 +1,34 @@
+class MyQueue {
+    constructor() {
+        this.stackIn = [];  // 用于入队操作
+        this.stackOut = []; // 用于出队操作
+    }
+
+    push(x) {
+        this.stackIn.push(x);
+    }
+
+    pop() {
+        if (this.stackOut.length === 0) {
+            this._transfer();
+        }
+        return this.stackOut.pop();
+    }
+
+    peek() {
+        if (this.stackOut.length === 0) {
+            this._transfer();
+        }
+        return this.stackOut[this.stackOut.length - 1];
+    }
+
+    empty() {
+        return this.stackIn.length === 0 && this.stackOut.length === 0;
+    }
+
+    _transfer() {
+        while (this.stackIn.length > 0) {
+            this.stackOut.push(this.stackIn.pop());
+        }
+    }
+}
